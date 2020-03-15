@@ -12,11 +12,11 @@ If you are following the [documentation](https://ameliorated.info/documentation.
 
 The documentation for the use of these scripts is on the main website, [found here](https://ameliorated.info/documentation.html), to avoid any unnecessary problems, please follow this documentation when using these scripts. Simply put, the batch script is to be run both before and after the bash script, and the bash script *must* be run in Linux.
 
-## BATCH scripts
+### BATCH scripts
 
 The main script in the folder is the "amelioration" script, this is the script that sets up everything that can be set up in Windows itself. This script is used both before and after the BASH script is run in Linux.
 
-## BASH scripts
+### BASH scripts
 
 This folder holds both the main "ameliorate" script and auxiliary scripts. The auxiliary scripts are helpful in setting up Windows and can be ran in Windows with Cygwin. As will all BASH scripts, it is required to change the file permissions so that they can be executed, regardless of the OS being used, example below.
 
