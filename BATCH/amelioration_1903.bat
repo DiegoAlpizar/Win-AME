@@ -1,5 +1,5 @@
 ﻿:: Windows 10 Pre/Post-AME Script
-:: v3.20.03.27
+:: v1903.2020.03.27
 
 @echo off
 pushd "%~dp0"
@@ -25,7 +25,7 @@ goto menu
 :menu
 	cls
 	echo.
-	echo  :: WINDOWS 10 AME SETUP SCRIPT Version 20.03.06
+	echo  :: WINDOWS 10 AME SETUP SCRIPT Version 2020.03.27
 	echo. 
 	echo     This script gives you a list-style overview to execute many commands
 	echo. 
