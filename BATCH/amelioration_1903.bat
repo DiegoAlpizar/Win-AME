@@ -29,7 +29,7 @@ goto menu
 	echo. 
 	echo     This script gives you a list-style overview to execute many commands
 	echo. 
-	echo  :: NOTE: For Windows 10 Builds 1809 & 1903 Only
+	echo  :: NOTE: For Windows 10 Builds 1809 and 1903 Only
 	echo. 
 	echo     1. Run Pre-Amelioration
 	echo     2. Run Post-Amelioration
