@@ -1,5 +1,5 @@
 ﻿:: Windows 10 Pre/Post-AME Script
-:: v3.20.03.06
+:: v3.20.03.27
 
 @echo off
 pushd "%~dp0"
