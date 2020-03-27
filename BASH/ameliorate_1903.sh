@@ -17,7 +17,7 @@ read -p "To continue press [ENTER], or Ctrl-C to exit"
 title_bar() {
 	clear
 	echo "╔═══════════════════════════════════════════════════╗"
-	echo "║ AMEliorate Windows 10 1903               20.03.06 ║"
+	echo "║ AMEliorate Windows 10 1903             2020.03.27 ║"
 	echo "╚═══════════════════════════════════════════════════╝"
 }
 
