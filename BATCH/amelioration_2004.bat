@@ -675,13 +675,11 @@ timeout /t 20 /NOBREAK
 taskkill /f /im oldnewexplorercfg.exe > NUL 2>&1
 del oldnewexplorercfg.exe > NUL 2>&1
 
-goto :reboot
+goto reboot
 
 :: Pls install mpv, it's better than vlc
 :: reg add "HKEY_CLASSES_ROOT\Directory\shell\Open with MPV" /v icon /t REG_SZ /d "C:\\ProgramData\\chocolatey\\lib\\mpv.install\\tools\\mpv-document.ico" /f
 :: reg add "HKCR\Directory\shell\Open with MPV\command" /v @ /t REG_SZ /d "mpv \"%1\"" /f
-
-goto menu
 
 :: Open User preferences to configure administrator/user permissions
 :user
