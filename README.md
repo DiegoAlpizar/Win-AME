@@ -6,11 +6,11 @@ These scripts are used in conjunction with each other to, in part, create an Ame
 
 ## Download
 
-If you are following the [documentation](https://ameliorated.info/documentation.html), the links will point directly to the correct files. If you want all of the scripts, they can be downloaded from the releases page in a zip file.
+If you are following the [documentation](https://wiki.ameliorated.info/doku.php?id=documentation_2004), simply download the latest [release](https://git.ameliorated.info/malte/scripts/releases) for the version of Windows 10 you are using.
 
 ## How to use these scripts
 
-The documentation for the use of these scripts is on the main website, [found here](https://ameliorated.info/documentation.html), to avoid any unnecessary problems, please follow this documentation when using these scripts. Simply put, the batch script is to be run both before and after the bash script, and the bash script *must* be run in Linux.
+The documentation for the use of these scripts is on the wiki, [found here](https://wiki.ameliorated.info), to avoid any unnecessary problems, please follow this documentation when using these scripts. Simply put, the batch script is to be run both before and after the bash script, and the bash script *must* be run in Linux.
 
 ### BATCH scripts
 
@@ -18,12 +18,12 @@ The main script in the folder is the "amelioration" script, this is the script t
 
 ### BASH scripts
 
-This folder holds both the main "ameliorate" script and auxiliary scripts. The auxiliary scripts are helpful in setting up Windows and can be ran in Windows with Cygwin. As will all BASH scripts, it is required to change the file permissions so that they can be executed, regardless of the OS being used, example below.
+This folder holds both the main "ameliorate" script and auxiliary scripts. The auxiliary scripts are helpful in setting up Windows and can be ran in Windows with Cygwin. As with all BASH scripts, the file permissions may be need to be changed so that they can be executed, example below.
 
-`chmod +x ameliorated_1903_debian.sh`
+`chmod +x ameliorated_2004.sh`
 
 ## FAQ
 
 * __Which versions of Windows do these scripts worth with?__
 
-They have only been thoroughly tested with 1809 and 1903, but these scripts will work with __1809__, __1903__, and __1909__.  Windows 10 1909 should work as there are likely no outstanding differences between it and 1903, but be aware that it has not been tested.
+The scripts are made to work with a specific version of Windows 10. Use on any other version may result in unexpected behavior or a broken system.
