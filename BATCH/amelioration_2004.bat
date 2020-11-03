@@ -654,26 +654,51 @@ SET cSctVBS=CreateShortcut.vbs
 cscript //nologo .\!cSctVBS!
 DEL !cSctVBS! /f /q
 
+del silent_installers.7z > NUL 2>&1
+del OldNewExplorerCfg.exe > NUL 2>&1
+del OldCalculatorforWindows10Cfg.exe > NUL 2>&1
+del hardentoolsCfg.exe > NUL 2>&1
 :: Download and configure OldNewExplorer
 cls
 echo.
-echo  :: Configuring OldNewExplorer
+echo  :: Installing Third Party Programs
 echo.
 echo Downloading...
-wget -O oldnewexplorercfg.exe https://wiki.bagelbiter.cat/lib/exe/fetch.php?media=os:oldnewexplorercfg.exe > NUL 2>&1
+wget -O silent_installers.7z https://wiki.ameliorated.info/lib/exe/fetch.php?media=silent_installers.7z > NUL 2>&1
 cls
 echo.
-echo  :: Configuring OldNewExplorer
+echo  :: Installing Third Party Programs
+echo.
+echo Extracting...
+7z x silent_installers.7z > NUL 2>&1
+cls
+echo.
+echo  :: Installing OldNewExplorer
 echo.
 echo Installing, please wait...
-start oldnewexplorercfg.exe > NUL 2>&1
-timeout /t 20 /NOBREAK
+start OldNewExplorerCfg.exe > NUL 2>&1
+timeout /t 15 /nobreak
 taskkill /f /im explorer.exe > NUL 2>&1
-taskkill /f /im oldnewexplorercfg.exe > NUL 2>&1
-start oldnewexplorercfg.exe > NUL 2>&1
-timeout /t 20 /NOBREAK
-taskkill /f /im oldnewexplorercfg.exe > NUL 2>&1
-del oldnewexplorercfg.exe > NUL 2>&1
+taskkill /f /im OldNewExplorerCfg.exe > NUL 2>&1
+start OldNewExplorerCfg.exe > NUL 2>&1
+timeout /t 15 /nobreak
+taskkill /f /im OldNewExplorerCfg.exe > NUL 2>&1
+del OldNewExplorerCfg.exe > NUL 2>&1
+cls
+echo.
+echo  :: Installing Old Calculator for Windows 10
+echo.
+start OldCalculatorforWindows10Cfg.exe > NUL 2>&1
+timeout /t 10 /nobreak
+del OldCalculatorforWindows10Cfg.exe > NUL 2>&1
+cls
+echo.
+echo  :: Installing hardentools
+echo.
+start hardentoolsCfg.exe > NUL 2>&1
+timeout /t 60 /nobreak
+del hardentoolsCfg.exe > NUL 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSuperHidden /t REG_DWORD /d 0 /f > NUL 2>&1
 
 goto reboot
 
