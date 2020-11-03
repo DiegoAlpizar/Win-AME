@@ -149,8 +149,8 @@ echo 'cp -fa --preserve=all Windows/SystemApps/*ContentDeliveryManager* AME_Back
 echo 'cp -fa --preserve=all Windows/SystemApps/Microsoft.MicrosoftEdge* AME_Backup/Windows/SystemApps' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all Windows/SystemApps/Microsoft.Windows.Cortana* AME_Backup/Windows/SystemApps' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all Windows/SystemApps/Microsoft.XboxGameCallableUI* AME_Backup/Windows/SystemApps' | cat - backup.txt > temp && mv temp backup.txt
-echo 'cp -fa --preserve=all Windows/System32/smartscreen.exe AME_Backup/Windows/System32/' | cat - restore.txt > temp && mv temp restore.txt
-echo 'cp -fa --preserve=all Windows/System32/smartscreenps.dll AME_Backup/Windows/System32/' | cat - restore.txt > temp && mv temp restore.txt
+echo 'cp -fa --preserve=all Windows/System32/smartscreen.exe AME_Backup/Windows/System32/' | cat - backup.txt > temp && mv temp backup.txt
+echo 'cp -fa --preserve=all Windows/System32/smartscreenps.dll AME_Backup/Windows/System32/' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all Windows/diagnostics/system/Apps AME_Backup/Windows/diagnostics/system' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all Windows/diagnostics/system/WindowsUpdate AME_Backup/Windows/diagnostics/system' | cat - backup.txt > temp && mv temp backup.txt
 echo '#!/bin/bash' | cat - backup.txt > temp && mv temp backup.txt
