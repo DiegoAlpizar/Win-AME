@@ -1,5 +1,5 @@
 ﻿:: Windows 10 AME BATCH Script
-:: v2004.2020.10.31
+:: v2004.2020.11.3
 
 @echo off
 pushd "%~dp0"
@@ -25,7 +25,7 @@ goto menu
 :menu
 cls
 echo.
-echo  :: WINDOWS 10 AME SETUP SCRIPT Version 2020.10.31
+echo  :: WINDOWS 10 AME SETUP SCRIPT Version 2020.11.3
 echo. 
 echo     This script gives you a list-style overview to execute many commands
 echo. 
@@ -721,7 +721,7 @@ goto menu
 
 :reboot
 echo.
-echo  :: WINDOWS 10 AME SETUP SCRIPT Version 2020.10.31
+echo  :: WINDOWS 10 AME SETUP SCRIPT Version 2020.11.3
 echo.
 cls
 echo A reboot is required to complete setup.
