@@ -6,7 +6,7 @@ These scripts are used in conjunction with each other to, in part, create an Ame
 
 ## Download
 
-If you are following the [documentation](https://wiki.ameliorated.info/doku.php?id=documentation_20H2), simply download the latest [release](https://git.ameliorated.info/malte/scripts/releases) for the version of Windows 10 you are using.
+If you are following the [documentation](https://wiki.ameliorated.info/doku.php?id=documentation_21H1), simply download the latest [release](https://git.ameliorated.info/malte/scripts/releases) for the version of Windows 10 you are using.
 
 ## How to use these scripts
 
@@ -20,7 +20,7 @@ The main script in the folder is the "amelioration" script, this is the script t
 
 This folder holds both the main "ameliorate" script and auxiliary scripts. The auxiliary scripts are helpful in setting up Windows and can be ran in Windows with Cygwin. As with all BASH scripts, the file permissions may be need to be changed so that they can be executed, example below.
 
-`chmod +x ameliorated_20H2.sh`
+`chmod +x ameliorated_21H1.sh`
 
 ## FAQ
 
