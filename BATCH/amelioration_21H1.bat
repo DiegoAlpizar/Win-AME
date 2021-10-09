@@ -469,7 +469,6 @@ call :title_remove_appx_packages
 :: Remove Cortana from all users
 PowerShell -Command "Get-AppxPackage -allusers *Microsoft.549981C3F5F10* | Remove-AppxPackage"
 call :title_remove_appx_packages
-:: Wildcard removal for the rest of the apps
 PowerShell -Command "Get-AppxPackage *3DViewer* | Remove-AppxPackage"
 call :title_remove_appx_packages
 PowerShell -Command "Get-AppxPackage *AssignedAccessLockApp* | Remove-AppxPackage"
@@ -506,8 +505,6 @@ PowerShell -Command "Get-AppxPackage *Paint* | Remove-AppxPackage"
 call :title_remove_appx_packages
 PowerShell -Command "Get-AppxPackage *wallet* | Remove-AppxPackage"
 call :title_remove_appx_packages
-PowerShell -Command "Get-AppxPackage *xbox* | Remove-AppxPackage"
-call :title_remove_appx_packages
 PowerShell -Command "Get-AppxPackage *OneNote* | Remove-AppxPackage"
 call :title_remove_appx_packages
 PowerShell -Command "Get-AppxPackage *Microsoft.People* | Remove-AppxPackage"
@@ -541,6 +538,14 @@ call :title_remove_appx_packages
 PowerShell -Command "Get-AppxPackage *Microsoft.Messaging* | Remove-AppxPackage"
 call :title_remove_appx_packages
 PowerShell -Command "Get-AppxPackage *Microsoft.WindowsStore* | Remove-AppxPackage"
+call :title_remove_appx_packages
+PowerShell -Command "Get-AppxPackage *XboxApp* | Remove-AppxPackage"
+call :title_remove_appx_packages
+PowerShell -Command "Get-AppxPackage *XboxSpeechToTextOverlay* | Remove-AppxPackage"
+call :title_remove_appx_packages
+PowerShell -Command "Get-AppxPackage *XboxGamingOverlay* | Remove-AppxPackage"
+call :title_remove_appx_packages
+PowerShell -Command "Get-AppxPackage *XboxGameOverlay* | Remove-AppxPackage"
 call :title_remove_appx_packages
 :: Remove Edge, both the new and old version
 cd "C:\Program Files (x86)\Microsoft\Edge\Application\8*\Installer"
