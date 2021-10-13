@@ -1,5 +1,5 @@
 :: Windows 10 AME BATCH Script
-:: v21H1.2021.10.06
+:: v21H1.2021.10.13
 
 @echo off
 pushd "%~dp0"
@@ -25,7 +25,7 @@ goto menu
 :menu
 cls
 echo.
-echo  :: WINDOWS 10 AME SETUP SCRIPT Version 2021.10.06
+echo  :: WINDOWS 10 AME SETUP SCRIPT Version 2021.10.13
 echo. 
 echo     This script gives you a list-style overview to execute many commands
 echo. 
@@ -858,7 +858,7 @@ DEL !cSctVBS! /f /q
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 SET LinkName=Mozilla Thunderbird
-SET Esc_LinkDest=%%HOMEDRIVE%%\Users\user\AppData\Roaming\OpenShell\Pinned\!LinkName!.lnk
+SET Esc_LinkDest=%%HOMEDRIVE%%\Users\%username%\AppData\Roaming\OpenShell\Pinned\!LinkName!.lnk
 SET Esc_LinkTarget=%%HOMEDRIVE%%\Program Files\Mozilla Thunderbird\Thunderbird.exe
 SET cSctVBS=CreateShortcut.vbs
 (
