@@ -102,110 +102,6 @@ reg add "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Dat
 cls
 schtasks /change /TN "\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser"	/DISABLE	> NUL 2>&1
 cls
-:: Add Task to restrict administrator login and display a message to the user when logging into the desktop with the administrator account
-SetLocal EnableDelayedExpansion
-(
-echo ^<?xml version="1.0" encoding="UTF-16"?^>
-echo ^<Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task"^>
-echo   ^<RegistrationInfo^>
-echo     ^<Date^>2021-02-10T19:24:15.5621439^</Date^>
-echo     ^<Author^>WINDOWS-PC\Administrator^</Author^>
-echo     ^<URI^>\Log-off admin user^</URI^>
-echo   ^</RegistrationInfo^>
-echo   ^<Triggers^>
-echo     ^<LogonTrigger^>
-echo       ^<Enabled^>true^</Enabled^>
-echo       ^<UserId^>WINDOWS-PC\Administrator^</UserId^>
-echo     ^</LogonTrigger^>
-echo   ^</Triggers^>
-echo   ^<Principals^>
-echo     ^<Principal id="Author"^>
-echo       ^<UserId^>System^</UserId^>
-echo       ^<LogonType^>InteractiveToken^</LogonType^>
-echo       ^<RunLevel^>LeastPrivilege^</RunLevel^>
-echo     ^</Principal^>
-echo   ^</Principals^>
-echo   ^<Settings^>
-echo     ^<MultipleInstancesPolicy^>IgnoreNew^</MultipleInstancesPolicy^>
-echo     ^<DisallowStartIfOnBatteries^>true^</DisallowStartIfOnBatteries^>
-echo     ^<StopIfGoingOnBatteries^>true^</StopIfGoingOnBatteries^>
-echo     ^<AllowHardTerminate^>true^</AllowHardTerminate^>
-echo     ^<StartWhenAvailable^>false^</StartWhenAvailable^>
-echo     ^<RunOnlyIfNetworkAvailable^>false^</RunOnlyIfNetworkAvailable^>
-echo     ^<IdleSettings^>
-echo       ^<StopOnIdleEnd^>true^</StopOnIdleEnd^>
-echo       ^<RestartOnIdle^>false^</RestartOnIdle^>
-echo     ^</IdleSettings^>
-echo     ^<AllowStartOnDemand^>true^</AllowStartOnDemand^>
-echo     ^<Enabled^>true^</Enabled^>
-echo     ^<Hidden^>false^</Hidden^>
-echo     ^<RunOnlyIfIdle^>false^</RunOnlyIfIdle^>
-echo     ^<WakeToRun^>false^</WakeToRun^>
-echo     ^<ExecutionTimeLimit^>PT72H^</ExecutionTimeLimit^>
-echo     ^<Priority^>7^</Priority^>
-echo   ^</Settings^>
-echo   ^<Actions Context="Author"^>
-echo     ^<Exec^>
-echo       ^<Command^>cmd.exe^</Command^>
-echo       ^<Arguments^>/c c:\windows\system32\logoff.exe^</Arguments^>
-echo     ^</Exec^>
-echo   ^</Actions^>
-echo ^</Task^>
-)>> C:\AME-Log-off-admin.xml
-
-SetLocal EnableDelayedExpansion
-(
-echo ^<?xml version="1.0" encoding="UTF-16"?^>
-echo ^<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task"^>
-echo  ^<RegistrationInfo^>
-echo    ^<Date^>2021-02-10T20:04:12.7491874^</Date^>
-echo    ^<Author^>WINDOWS-PC\Administrator^</Author^>
-echo    ^<URI^>\Log-off admin message^</URI^>
-echo  ^</RegistrationInfo^>
-echo  ^<Triggers^>
-echo    ^<LogonTrigger^>
-echo      ^<Enabled^>true^</Enabled^>
-echo      ^<UserId^>WINDOWS-PC\Administrator^</UserId^>
-echo    ^</LogonTrigger^>
-echo  ^</Triggers^>
-echo  ^<Principals^>
-echo    ^<Principal id="Author"^>
-echo      ^<UserId^>System^</UserId^>
-echo      ^<RunLevel^>HighestAvailable^</RunLevel^>
-echo    ^</Principal^>
-echo  ^</Principals^>
-echo  ^<Settings^>
-echo    ^<MultipleInstancesPolicy^>IgnoreNew^</MultipleInstancesPolicy^>
-echo    ^<DisallowStartIfOnBatteries^>true^</DisallowStartIfOnBatteries^>
-echo    ^<StopIfGoingOnBatteries^>true^</StopIfGoingOnBatteries^>
-echo    ^<AllowHardTerminate^>true^</AllowHardTerminate^>
-echo    ^<StartWhenAvailable^>false^</StartWhenAvailable^>
-echo    ^<RunOnlyIfNetworkAvailable^>false^</RunOnlyIfNetworkAvailable^>
-echo    ^<IdleSettings^>
-echo      ^<StopOnIdleEnd^>true^</StopOnIdleEnd^>
-echo      ^<RestartOnIdle^>false^</RestartOnIdle^>
-echo    ^</IdleSettings^>
-echo    ^<AllowStartOnDemand^>true^</AllowStartOnDemand^>
-echo    ^<Enabled^>true^</Enabled^>
-echo    ^<Hidden^>false^</Hidden^>
-echo    ^<RunOnlyIfIdle^>false^</RunOnlyIfIdle^>
-echo    ^<DisallowStartOnRemoteAppSession^>false^</DisallowStartOnRemoteAppSession^>
-echo    ^<UseUnifiedSchedulingEngine^>true^</UseUnifiedSchedulingEngine^>
-echo    ^<WakeToRun^>false^</WakeToRun^>
-echo    ^<ExecutionTimeLimit^>PT72H^</ExecutionTimeLimit^>
-echo    ^<Priority^>7^</Priority^>
-echo  ^</Settings^>
-echo  ^<Actions Context="Author"^>
-echo    ^<Exec^>
-echo      ^<Command^>powershell.exe^</Command^>
-echo      ^<Arguments^>Write-Output  'Logging in as the Administrator user is not supported on AME.' 'Please login using a different account.' ^| Msg *^</Arguments^>
-echo    ^</Exec^>
-echo  ^</Actions^>
-echo ^</Task^>
-)>> C:\AME-Log-off-admin-message.xml
-
-schtasks /create /xml C:\AME-Log-off-admin.xml /tn "AME Log-off admin" /ru administrator /it
-schtasks /create /xml C:\AME-Log-off-admin-message.xml /tn "AME Log-off admin message" /ru administrator /it
 schtasks /delete /TN "\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser"	/f			> NUL 2>&1
 cls
 schtasks /change /TN "\Microsoft\Windows\Application Experience\ProgramDataUpdater"					/DISABLE	> NUL 2>&1
@@ -249,6 +145,110 @@ cls
 schtasks /delete /TN "\Microsoft\Windows\WindowsUpdate\Scheduled Start"								/f			> NUL 2>&1
 cls
 
+:::: Add Task to restrict administrator login and display a message to the user when logging into the desktop with the administrator account
+::SetLocal EnableDelayedExpansion
+::(
+::echo ^<?xml version="1.0" encoding="UTF-16"?^>
+::echo ^<Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task"^>
+::echo   ^<RegistrationInfo^>
+::echo     ^<Date^>2021-02-10T19:24:15.5621439^</Date^>
+::echo     ^<Author^>WINDOWS-PC\Administrator^</Author^>
+::echo     ^<URI^>\Log-off admin user^</URI^>
+::echo   ^</RegistrationInfo^>
+::echo   ^<Triggers^>
+::echo     ^<LogonTrigger^>
+::echo       ^<Enabled^>true^</Enabled^>
+::echo       ^<UserId^>WINDOWS-PC\Administrator^</UserId^>
+::echo     ^</LogonTrigger^>
+::echo   ^</Triggers^>
+::echo   ^<Principals^>
+::echo     ^<Principal id="Author"^>
+::echo       ^<UserId^>System^</UserId^>
+::echo       ^<LogonType^>InteractiveToken^</LogonType^>
+::echo       ^<RunLevel^>LeastPrivilege^</RunLevel^>
+::echo     ^</Principal^>
+::echo   ^</Principals^>
+::echo   ^<Settings^>
+::echo     ^<MultipleInstancesPolicy^>IgnoreNew^</MultipleInstancesPolicy^>
+::echo     ^<DisallowStartIfOnBatteries^>true^</DisallowStartIfOnBatteries^>
+::echo     ^<StopIfGoingOnBatteries^>true^</StopIfGoingOnBatteries^>
+::echo     ^<AllowHardTerminate^>true^</AllowHardTerminate^>
+::echo     ^<StartWhenAvailable^>false^</StartWhenAvailable^>
+::echo     ^<RunOnlyIfNetworkAvailable^>false^</RunOnlyIfNetworkAvailable^>
+::echo     ^<IdleSettings^>
+::echo       ^<StopOnIdleEnd^>true^</StopOnIdleEnd^>
+::echo       ^<RestartOnIdle^>false^</RestartOnIdle^>
+::echo     ^</IdleSettings^>
+::echo     ^<AllowStartOnDemand^>true^</AllowStartOnDemand^>
+::echo     ^<Enabled^>true^</Enabled^>
+::echo     ^<Hidden^>false^</Hidden^>
+::echo     ^<RunOnlyIfIdle^>false^</RunOnlyIfIdle^>
+::echo     ^<WakeToRun^>false^</WakeToRun^>
+::echo     ^<ExecutionTimeLimit^>PT72H^</ExecutionTimeLimit^>
+::echo     ^<Priority^>7^</Priority^>
+::echo   ^</Settings^>
+::echo   ^<Actions Context="Author"^>
+::echo     ^<Exec^>
+::echo       ^<Command^>cmd.exe^</Command^>
+::echo       ^<Arguments^>/c c:\windows\system32\logoff.exe^</Arguments^>
+::echo     ^</Exec^>
+::echo   ^</Actions^>
+::echo ^</Task^>
+::)>> C:\AME-Log-off-admin.xml
+
+::SetLocal EnableDelayedExpansion
+::(
+::echo ^<?xml version="1.0" encoding="UTF-16"?^>
+::echo ^<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task"^>
+::echo  ^<RegistrationInfo^>
+::echo    ^<Date^>2021-02-10T20:04:12.7491874^</Date^>
+::echo    ^<Author^>WINDOWS-PC\Administrator^</Author^>
+::echo    ^<URI^>\Log-off admin message^</URI^>
+::echo  ^</RegistrationInfo^>
+::echo  ^<Triggers^>
+::echo    ^<LogonTrigger^>
+::echo      ^<Enabled^>true^</Enabled^>
+::echo      ^<UserId^>WINDOWS-PC\Administrator^</UserId^>
+::echo    ^</LogonTrigger^>
+::echo  ^</Triggers^>
+::echo  ^<Principals^>
+::echo    ^<Principal id="Author"^>
+::echo      ^<UserId^>System^</UserId^>
+::echo      ^<RunLevel^>HighestAvailable^</RunLevel^>
+::echo    ^</Principal^>
+::echo  ^</Principals^>
+::echo  ^<Settings^>
+::echo    ^<MultipleInstancesPolicy^>IgnoreNew^</MultipleInstancesPolicy^>
+::echo    ^<DisallowStartIfOnBatteries^>true^</DisallowStartIfOnBatteries^>
+::echo    ^<StopIfGoingOnBatteries^>true^</StopIfGoingOnBatteries^>
+::echo    ^<AllowHardTerminate^>true^</AllowHardTerminate^>
+::echo    ^<StartWhenAvailable^>false^</StartWhenAvailable^>
+::echo    ^<RunOnlyIfNetworkAvailable^>false^</RunOnlyIfNetworkAvailable^>
+::echo    ^<IdleSettings^>
+::echo      ^<StopOnIdleEnd^>true^</StopOnIdleEnd^>
+::echo      ^<RestartOnIdle^>false^</RestartOnIdle^>
+::echo    ^</IdleSettings^>
+::echo    ^<AllowStartOnDemand^>true^</AllowStartOnDemand^>
+::echo    ^<Enabled^>true^</Enabled^>
+::echo    ^<Hidden^>false^</Hidden^>
+::echo    ^<RunOnlyIfIdle^>false^</RunOnlyIfIdle^>
+::echo    ^<DisallowStartOnRemoteAppSession^>false^</DisallowStartOnRemoteAppSession^>
+::echo    ^<UseUnifiedSchedulingEngine^>true^</UseUnifiedSchedulingEngine^>
+::echo    ^<WakeToRun^>false^</WakeToRun^>
+::echo    ^<ExecutionTimeLimit^>PT72H^</ExecutionTimeLimit^>
+::echo    ^<Priority^>7^</Priority^>
+::echo  ^</Settings^>
+::echo  ^<Actions Context="Author"^>
+::echo    ^<Exec^>
+::echo      ^<Command^>powershell.exe^</Command^>
+::echo      ^<Arguments^>Write-Output  'Logging in as the Administrator user is not supported on AME.' 'Please login using a different account.' ^| Msg *^</Arguments^>
+::echo    ^</Exec^>
+::echo  ^</Actions^>
+::echo ^</Task^>
+::)>> C:\AME-Log-off-admin-message.xml
+
+::schtasks /create /xml C:\AME-Log-off-admin.xml /tn "AME Log-off admin" /ru administrator /it
+::schtasks /create /xml C:\AME-Log-off-admin-message.xml /tn "AME Log-off admin message" /ru administrator /it
 
 :: Registry Edits
 cls
@@ -1045,8 +1045,8 @@ timeout /t 2 /nobreak > NUL
 
 net user administrator /active:yes
 :: attempt to add the logoff scripts to Windows
-schtasks /create /xml C:\AME-Log-off-admin.xml /tn "AME Log-off admin" /ru administrator /it
-schtasks /create /xml C:\AME-Log-off-admin-message.xml /tn "AME Log-off admin message" /ru administrator /it
+::schtasks /create /xml C:\AME-Log-off-admin.xml /tn "AME Log-off admin" /ru administrator /it
+::schtasks /create /xml C:\AME-Log-off-admin-message.xml /tn "AME Log-off admin message" /ru administrator /it
 netplwiz
 
 goto menu
