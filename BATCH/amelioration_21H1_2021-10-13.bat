@@ -787,9 +787,10 @@ timeout /t 1 /nobreak > NUL
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 
 :: Add/Remove packages here. Use chocolatey to 'search' for packages matching a term to get the proper name or head over to https://chocolatey.org/packages
-:: Recommended optional packages include: libreoffice steam adobeair ffmpeg mpv youtube-dl directx cygwin babun transmission-qt audacity cdrtfe obs syncthing keepass
+:: Recommended optional packages include: vcredist-all cascadiamono libreoffice adobeair ffmpeg mpv youtube-dl directx cygwin babun transmission-qt audacity cdrtfe obs syncthing keepass
+:: steam krita gimp vmware-workstation-player
+::@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco  install  -y  --force  --allow-empty-checksums  firefox vlc 7zip python3 wget directx sublimetext3 sublimetext4 sublimemerge googlechrome origin adobereader virtualbox"
 
-@powershell -NoProfile -ExecutionPolicy Bypass -Command "choco install -y --force --allow-empty-checksums firefox thunderbird open-shell vlc 7zip jpegview vcredist-all directx python3 onlyoffice wget cascadiamono"
 
 :: Remove Windows Security from Start Menu
 cls
