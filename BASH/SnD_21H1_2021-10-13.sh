@@ -29,31 +29,31 @@ title_bar
     echo "This script requires the installation of a few"
     echo "dependencies. Please enter your password below."
     echo ""
-sudo apt update
+#sudo apt update
 PKG_OK=$(dpkg-query -W --showformat='${Status}\n' git|grep "install ok installed")
 echo "Checking for git: $PKG_OK"
-if [ "" == "$PKG_OK" ]; then
-    echo "curl not found, prompting to install git..."
-    sudo apt-get -y install git
-fi
+#if [ "" == "$PKG_OK" ]; then
+#    echo "curl not found, prompting to install git..."
+#    sudo apt-get -y install git
+#fi
 PKG_OK=$(dpkg-query -W --showformat='${Status}\n' p7zip-full|grep "install ok installed")
 echo "Checking for 7zip: $PKG_OK"
-if [ "" == "$PKG_OK" ]; then
-    echo "curl not found, prompting to install 7zip..."
-    sudo apt-get -y install p7zip-full
-fi
+#if [ "" == "$PKG_OK" ]; then
+#    echo "curl not found, prompting to install 7zip..."
+#    sudo apt-get -y install p7zip-full
+#fi
 
 # prompts to install fzf if not already installed
-title_bar
-echo "The program fzf is required for this script to function"
-echo "Please allow for fzf to install following this message"
-echo "Enter "y" (yes) for all prompts"
-echo ""
-read -p "To continue press [ENTER], or Ctrl-C to exit"
-echo "\n"
-title_bar
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+#title_bar
+#echo "The program fzf is required for this script to function"
+#echo "Please allow for fzf to install following this message"
+#echo "Enter "y" (yes) for all prompts"
+#echo ""
+#read -p "To continue press [ENTER], or Ctrl-C to exit"
+#echo "\n"
+#title_bar
+#git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+#~/.fzf/install
 
 title_bar
 echo "Checking for existing AME Backup"
