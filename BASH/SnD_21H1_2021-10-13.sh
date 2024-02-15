@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
+####!/usr/bin/env bash  ???? /usr/bin/env: ‘bash\r’: No such file or directory ???? What is env ??
+
 
 clear
 echo "                 ╔═══════════════╗"
