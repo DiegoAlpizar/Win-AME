@@ -1,5 +1,6 @@
 :: Windows 10 AME BATCH Script
 :: v21H1.2021.10.13
+:: My custom version
 
 @echo off
 pushd "%~dp0"
