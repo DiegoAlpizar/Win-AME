@@ -516,6 +516,8 @@ PowerShell -Command "Get-AppxPackage *Getstarted* | Remove-AppxPackage"
 call :title_remove_appx_packages
 PowerShell -Command "Get-AppxPackage *Microsoft.OneConnect* | Remove-AppxPackage"
 call :title_remove_appx_packages
+PowerShell -Command "Get-AppxPackage *WindowsAlarms* | Remove-AppxPackage"
+call :title_remove_appx_packages
 PowerShell -Command "Get-AppxPackage *WindowsCamera* | Remove-AppxPackage"
 call :title_remove_appx_packages
 PowerShell -Command "Get-AppxPackage *bing* | Remove-AppxPackage"
