@@ -139,17 +139,17 @@ rm dirs*
 # creates backup script
 awk -v quote='"' '{print "cp -fa --preserve=all " quote $0 quote " " quote "AME_Backup/" $0 quote}' fzf_list_cleaned.txt > backup.txt
 # adds individual directories to top of script
-echo 'cp -fa --preserve=all "Program Files/Internet Explorer" "AME_Backup/Program Files/Internet Explorer"' | cat - backup.txt > temp && mv temp backup.txt
+#echo 'cp -fa --preserve=all "Program Files/Internet Explorer" "AME_Backup/Program Files/Internet Explorer"' | cat - backup.txt > temp && mv temp backup.txt
 #echo 'cp -fa --preserve=all "Program Files/WindowsApps" "AME_Backup/Program Files/WindowsApps"' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all "Program Files/Windows Defender" "AME_Backup/Program Files/Windows Defender"' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all "Program Files/Windows Mail" "AME_Backup/Program Files/Windows Mail"' | cat - backup.txt > temp && mv temp backup.txt
-echo 'cp -fa --preserve=all "Program Files/Windows Media Player" "AME_Backup/Program Files/Windows Media Player"' | cat - backup.txt > temp && mv temp backup.txt
-echo 'cp -fa --preserve=all "Program Files (x86)/Internet Explorer" "AME_Backup/Program Files (x86)/Internet Explorer"' | cat - backup.txt > temp && mv temp backup.txt
+#echo 'cp -fa --preserve=all "Program Files/Windows Media Player" "AME_Backup/Program Files/Windows Media Player"' | cat - backup.txt > temp && mv temp backup.txt
+#echo 'cp -fa --preserve=all "Program Files (x86)/Internet Explorer" "AME_Backup/Program Files (x86)/Internet Explorer"' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all "Program Files (x86)/Windows Defender" "AME_Backup/Program Files (x86)/Microsoft"' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all "Program Files (x86)/Windows Defender" "AME_Backup/Program Files (x86)/Windows Defender"' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all "Program Files (x86)/Windows Defender" "AME_Backup/Program Files (x86)/Windows Defender Advanced Threat Protection"' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all "Program Files (x86)/Windows Mail" "AME_Backup/Program Files (x86)/Windows Mail"' | cat - backup.txt > temp && mv temp backup.txt
-echo 'cp -fa --preserve=all "Program Files (x86)/Windows Media Player" "AME_Backup/Program Files (x86)/Windows Media Player"' | cat - backup.txt > temp && mv temp backup.txt
+#echo 'cp -fa --preserve=all "Program Files (x86)/Windows Media Player" "AME_Backup/Program Files (x86)/Windows Media Player"' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all Windows/System32/wua* AME_Backup/Windows/System32' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all Windows/System32/wups* AME_Backup/Windows/System32' | cat - backup.txt > temp && mv temp backup.txt
 echo 'cp -fa --preserve=all Windows/SystemApps/*CloudExperienceHost* AME_Backup/Windows/SystemApps' | cat - backup.txt > temp && mv temp backup.txt
@@ -168,17 +168,17 @@ chmod +x backup.sh
 
 # creates recovery script
 awk -v quote='"' '{print "cp -fa --preserve=all " quote "AME_Backup/" $0 quote " " quote $0 quote}' fzf_list_cleaned.txt > restore.txt
-echo 'cp -fa --preserve=all "AME_Backup/Program Files/Internet Explorer" "Program Files/Internet Explorer"' | cat - restore.txt > temp && mv temp restore.txt
+#echo 'cp -fa --preserve=all "AME_Backup/Program Files/Internet Explorer" "Program Files/Internet Explorer"' | cat - restore.txt > temp && mv temp restore.txt
 #echo 'cp -fa --preserve=all "AME_Backup/Program Files/WindowsApps" "Program Files/WindowsApps"' | cat - restore.txt > temp && mv temp restore.txt
 echo 'cp -fa --preserve=all "AME_Backup/Program Files/Windows Defender" "Program Files/Windows Defender"' | cat - restore.txt > temp && mv temp restore.txt
 echo 'cp -fa --preserve=all "AME_Backup/Program Files/Windows Mail" "Program Files/Windows Mail"' | cat - restore.txt > temp && mv temp restore.txt
-echo 'cp -fa --preserve=all "AME_Backup/Program Files/Windows Media Player" "Program Files/Windows Media Player"' | cat - restore.txt > temp && mv temp restore.txt
-echo 'cp -fa --preserve=all "AME_Backup/Program Files (x86)/Internet Explorer" "Program Files (x86)/Internet Explorer"' | cat - restore.txt > temp && mv temp restore.txt
-echo 'cp -fa --preserve=all "AME_Backup/Program Files (x86)/Internet Explorer" "Program Files (x86)/Microsoft"' | cat - restore.txt > temp && mv temp restore.txt
+#echo 'cp -fa --preserve=all "AME_Backup/Program Files/Windows Media Player" "Program Files/Windows Media Player"' | cat - restore.txt > temp && mv temp restore.txt
+#echo 'cp -fa --preserve=all "AME_Backup/Program Files (x86)/Internet Explorer" "Program Files (x86)/Internet Explorer"' | cat - restore.txt > temp && mv temp restore.txt
+#echo 'cp -fa --preserve=all "AME_Backup/Program Files (x86)/Internet Explorer" "Program Files (x86)/Microsoft"' | cat - restore.txt > temp && mv temp restore.txt
 echo 'cp -fa --preserve=all "AME_Backup/Program Files (x86)/Windows Defender" "Program Files (x86)/Windows Defender"' | cat - restore.txt > temp && mv temp restore.txt
 echo 'cp -fa --preserve=all "AME_Backup/Program Files (x86)/Windows Defender" "Program Files (x86)/Windows Defender Advanced Threat Protection"' | cat - restore.txt > temp && mv temp restore.txt
 echo 'cp -fa --preserve=all "AME_Backup/Program Files (x86)/Windows Mail" "Program Files (x86)/Windows Mail"' | cat - restore.txt > temp && mv temp restore.txt
-echo 'cp -fa --preserve=all "AME_Backup/Program Files (x86)/Windows Media Player" "Program Files (x86)/Windows Media Player"' | cat - restore.txt > temp && mv temp restore.txt
+#echo 'cp -fa --preserve=all "AME_Backup/Program Files (x86)/Windows Media Player" "Program Files (x86)/Windows Media Player"' | cat - restore.txt > temp && mv temp restore.txt
 echo 'cp -fa --preserve=all AME_Backup/Windows/System32/wua* Windows/System32' | cat - restore.txt > temp && mv temp restore.txt
 echo 'cp -fa --preserve=all AME_Backup/Windows/System32/wups* Windows/System32' | cat - restore.txt > temp && mv temp restore.txt
 echo 'cp -fa --preserve=all AME_Backup/Windows/SystemApps/*CloudExperienceHost* Windows/SystemApps' | cat - restore.txt > temp && mv temp restore.txt
@@ -199,17 +199,17 @@ chmod +x restore.sh
 
 # creates removal script
 awk -v quote='"' '{print "rm -rf " quote $0 quote}' fzf_list_cleaned.txt > remove.sh
-echo 'rm -rf "Program Files/Internet Explorer"' | cat - remove.sh > temp && mv temp remove.sh
+#echo 'rm -rf "Program Files/Internet Explorer"' | cat - remove.sh > temp && mv temp remove.sh
 #echo 'rm -rf "Program Files/WindowsApps"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf "Program Files/Windows Defender"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf "Program Files/Windows Mail"' | cat - remove.sh > temp && mv temp remove.sh
-echo 'rm -rf "Program Files/Windows Media Player"' | cat - remove.sh > temp && mv temp remove.sh
-echo 'rm -rf "Program Files (x86)/Internet Explorer"' | cat - remove.sh > temp && mv temp remove.sh
+#echo 'rm -rf "Program Files/Windows Media Player"' | cat - remove.sh > temp && mv temp remove.sh
+#echo 'rm -rf "Program Files (x86)/Internet Explorer"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf "Program Files (x86)/Microsoft"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf "Program Files (x86)/Windows Defender"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf "Program Files (x86)/Windows Defender Advanced Threat Protection"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf "Program Files (x86)/Windows Mail"' | cat - remove.sh > temp && mv temp remove.sh
-echo 'rm -rf "Program Files (x86)/Windows Media Player"' | cat - remove.sh > temp && mv temp remove.sh
+#echo 'rm -rf "Program Files (x86)/Windows Media Player"' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/System32/wua*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/System32/wups*' | cat - remove.sh > temp && mv temp remove.sh
 echo 'rm -rf Windows/SystemApps/*CloudExperienceHost*' | cat - remove.sh > temp && mv temp remove.sh
