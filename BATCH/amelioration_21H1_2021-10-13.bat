@@ -34,7 +34,7 @@ echo.
 echo     1. Run Pre-Amelioration
 echo     2. Run Post-Amelioration
 echo     3. User Permissions
-echo     4. Set AME Wallpaper
+::echo     4. Set AME Wallpaper
 echo     5. Restart System
 echo. 
 echo  :: Type a 'number' and press ENTER
@@ -45,7 +45,7 @@ set /P menu=
 	if %menu%==1 GOTO preame
 	if %menu%==2 GOTO programs
 	if %menu%==3 GOTO user
-	if %menu%==4 GOTO wallpaper		
+::	if %menu%==4 GOTO wallpaper		
 	if %menu%==5 GOTO reboot
 	if %menu%==exit GOTO EOF
 else (
