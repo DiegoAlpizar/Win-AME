@@ -806,245 +806,246 @@ timeout /t 5 /nobreak > NUL
 del psexec.exe
 del PSTools.zip
 del remove_SecHealthUI_stub.py
-PowerShell -Command "wget -O Fluent-Metro_1.5.2.zip https://github.com/bonzibudd/Fluent-Metro/releases/download/v1.5.2/Fluent-Metro_1.5.2.zip"
-7z e Fluent-Metro_1.5.2.zip -y
-copy Fluent-Metro.skin "C:\Program Files\Open-Shell\Skins\" /y
-copy Fluent-Metro.skin7 "C:\Program Files\Open-Shell\Skins\" /y
+
+::PowerShell -Command "wget -O Fluent-Metro_1.5.2.zip https://github.com/bonzibudd/Fluent-Metro/releases/download/v1.5.2/Fluent-Metro_1.5.2.zip"
+::7z e Fluent-Metro_1.5.2.zip -y
+::copy Fluent-Metro.skin "C:\Program Files\Open-Shell\Skins\" /y
+::copy Fluent-Metro.skin7 "C:\Program Files\Open-Shell\Skins\" /y
 
 
-:: Configure Open-Shell
-:testos
-cls
-echo.
-echo :: Configuring Open-Shell
-echo.
-echo Due to restrictions with batch scripting it is required that you to 
-echo manually open the Open-Shell start menu for the first time.
-echo.
-echo Instructions:
-echo   1. Click Start
-echo   2. Click OK to close the Open-Shell Settings window
-echo   3. Open the Start Menu once more and then return to the CMD window
-echo.
-echo Press any key to continue:
-echo.
-pause > NUL
-set SHRTCT="%HOMEDRIVE%\Users\%username%\AppData\Roaming\OpenShell\Pinned\startscreen.lnk"
-if exist %SHRTCT% (
-	del %HOMEDRIVE%\Users\%username%\AppData\Roaming\OpenShell\Pinned\startscreen.lnk /f /q > NUL 2>&1
-	goto configureopenshell
-) else (
-	goto testos
-)
+:::: Configure Open-Shell
+:::testos
+::cls
+::echo.
+::echo :: Configuring Open-Shell
+::echo.
+::echo Due to restrictions with batch scripting it is required that you to 
+::echo manually open the Open-Shell start menu for the first time.
+::echo.
+::echo Instructions:
+::echo   1. Click Start
+::echo   2. Click OK to close the Open-Shell Settings window
+::echo   3. Open the Start Menu once more and then return to the CMD window
+::echo.
+::echo Press any key to continue:
+::echo.
+::pause > NUL
+::set SHRTCT="%HOMEDRIVE%\Users\%username%\AppData\Roaming\OpenShell\Pinned\startscreen.lnk"
+::if exist %SHRTCT% (
+::	del %HOMEDRIVE%\Users\%username%\AppData\Roaming\OpenShell\Pinned\startscreen.lnk /f /q > NUL 2>&1
+::	goto configureopenshell
+::) else (
+::	goto testos
+::)
+::
+:::configureopenshell
+::for /f "tokens=* USEBACKQ" %%i in (`wmic useraccount where "name="%username%"" get sid ^| findstr "S-"`) do set currentusername=%%i
+::set currentusername=%currentusername:~0,-3%
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell" /t REG_SZ /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\OpenShell" /t REG_SZ /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\OpenShell\Settings" /t REG_SZ /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /t REG_SZ /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /t REG_SZ /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer" /t REG_SZ /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer\Settings" /t REG_SZ /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer" /v "ShowedToolbar" /t REG_DWORD /d 1 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer" /v "NewLine" /t REG_DWORD /d 0 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer\Settings" /v "ShowStatusBar" /t REG_DWORD /d 0 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /v "ShowedStyle2" /t REG_DWORD /d 1 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /v "CSettingsDlg" /t REG_BINARY /d c80100001a0100000000000000000000360d00000100000000000000 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /v "OldItems" /t REG_BINARY /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /v "ItemRanks" /t REG_BINARY /d 0 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\MRU" /v "0" /t REG_SZ /d "C:\Windows\regedit.exe" /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "Version" /t REG_DWORD /d 04040098 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "AllProgramsMetro" /t REG_DWORD /d 1 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "RecentMetroApps" /t REG_DWORD /d 1 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "StartScreenShortcut" /t REG_DWORD /d 0 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SearchInternet" /t REG_DWORD /d 0 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "GlassOverride" /t REG_DWORD /d 1 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "GlassColor" /t REG_DWORD /d 0 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SkinW7" /t REG_SZ /d "Fluent-Metro" /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SkinVariationW7" /t REG_SZ /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SkinOptionsW7" /t REG_MULTI_SZ /d "USER_IMAGE=1"\0"SMALL_ICONS=0"\0"LARGE_FONT=0"\0"DISABLE_MASK=0"\0"OPAQUE=0"\0"TRANSPARENT_LESS=0"\0"TRANSPARENT_MORE=1"\0"WHITE_SUBMENUS2=0" /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SkipMetro" /t REG_DWORD /d 1 /f > NUL 2>&1
+::reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "MenuItems7" /t REG_MULTI_SZ /d "Item1.Command=user_files"\0"Item1.Settings=NOEXPAND"\0"Item2.Command=user_documents"\0"Item2.Settings=NOEXPAND"\0"Item3.Command=user_pictures"\0"Item3.Settings=NOEXPAND"\0"Item4.Command=user_music"\0"Item4.Settings=NOEXPAND"\0"Item5.Command=user_videos"\0"Item5.Settings=NOEXPAND"\0"Item6.Command=downloads"\0"Item6.Settings=NOEXPAND"\0"Item7.Command=homegroup"\0"Item7.Settings=ITEM_DISABLED"\0"Item8.Command=separator"\0"Item9.Command=games"\0"Item9.Settings=TRACK_RECENT|NOEXPAND|ITEM_DISABLED"\0"Item10.Command=favorites"\0"Item10.Settings=ITEM_DISABLED"\0"Item11.Command=recent_documents"\0"Item12.Command=computer"\0"Item12.Settings=NOEXPAND"\0"Item13.Command=network"\0"Item13.Settings=ITEM_DISABLED"\0"Item14.Command=network_connections"\0"Item14.Settings=ITEM_DISABLED"\0"Item15.Command=separator"\0"Item16.Command=control_panel"\0"Item16.Settings=TRACK_RECENT"\0"Item17.Command=pc_settings"\0"Item17.Settings=TRACK_RECENT"\0"Item18.Command=admin"\0"Item18.Settings=TRACK_RECENT|ITEM_DISABLED"\0"Item19.Command=devices"\0"Item19.Settings=ITEM_DISABLED"\0"Item20.Command=defaults"\0"Item20.Settings=ITEM_DISABLED"\0"Item21.Command=help"\0"Item21.Settings=ITEM_DISABLED"\0"Item22.Command=run"\0"Item23.Command=apps"\0"Item23.Settings=ITEM_DISABLED"\0"Item24.Command=windows_security"\0"Item24.Settings=ITEM_DISABLED"\0" /f > NUL 2>&1
 
-:configureopenshell
-for /f "tokens=* USEBACKQ" %%i in (`wmic useraccount where "name="%username%"" get sid ^| findstr "S-"`) do set currentusername=%%i
-set currentusername=%currentusername:~0,-3%
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell" /t REG_SZ /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\OpenShell" /t REG_SZ /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\OpenShell\Settings" /t REG_SZ /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /t REG_SZ /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /t REG_SZ /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer" /t REG_SZ /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer\Settings" /t REG_SZ /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer" /v "ShowedToolbar" /t REG_DWORD /d 1 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer" /v "NewLine" /t REG_DWORD /d 0 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\ClassicExplorer\Settings" /v "ShowStatusBar" /t REG_DWORD /d 0 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /v "ShowedStyle2" /t REG_DWORD /d 1 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /v "CSettingsDlg" /t REG_BINARY /d c80100001a0100000000000000000000360d00000100000000000000 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /v "OldItems" /t REG_BINARY /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu" /v "ItemRanks" /t REG_BINARY /d 0 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\MRU" /v "0" /t REG_SZ /d "C:\Windows\regedit.exe" /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "Version" /t REG_DWORD /d 04040098 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "AllProgramsMetro" /t REG_DWORD /d 1 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "RecentMetroApps" /t REG_DWORD /d 1 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "StartScreenShortcut" /t REG_DWORD /d 0 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SearchInternet" /t REG_DWORD /d 0 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "GlassOverride" /t REG_DWORD /d 1 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "GlassColor" /t REG_DWORD /d 0 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SkinW7" /t REG_SZ /d "Fluent-Metro" /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SkinVariationW7" /t REG_SZ /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SkinOptionsW7" /t REG_MULTI_SZ /d "USER_IMAGE=1"\0"SMALL_ICONS=0"\0"LARGE_FONT=0"\0"DISABLE_MASK=0"\0"OPAQUE=0"\0"TRANSPARENT_LESS=0"\0"TRANSPARENT_MORE=1"\0"WHITE_SUBMENUS2=0" /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "SkipMetro" /t REG_DWORD /d 1 /f > NUL 2>&1
-reg add "HKEY_USERS\%currentusername%\SOFTWARE\OpenShell\StartMenu\Settings" /v "MenuItems7" /t REG_MULTI_SZ /d "Item1.Command=user_files"\0"Item1.Settings=NOEXPAND"\0"Item2.Command=user_documents"\0"Item2.Settings=NOEXPAND"\0"Item3.Command=user_pictures"\0"Item3.Settings=NOEXPAND"\0"Item4.Command=user_music"\0"Item4.Settings=NOEXPAND"\0"Item5.Command=user_videos"\0"Item5.Settings=NOEXPAND"\0"Item6.Command=downloads"\0"Item6.Settings=NOEXPAND"\0"Item7.Command=homegroup"\0"Item7.Settings=ITEM_DISABLED"\0"Item8.Command=separator"\0"Item9.Command=games"\0"Item9.Settings=TRACK_RECENT|NOEXPAND|ITEM_DISABLED"\0"Item10.Command=favorites"\0"Item10.Settings=ITEM_DISABLED"\0"Item11.Command=recent_documents"\0"Item12.Command=computer"\0"Item12.Settings=NOEXPAND"\0"Item13.Command=network"\0"Item13.Settings=ITEM_DISABLED"\0"Item14.Command=network_connections"\0"Item14.Settings=ITEM_DISABLED"\0"Item15.Command=separator"\0"Item16.Command=control_panel"\0"Item16.Settings=TRACK_RECENT"\0"Item17.Command=pc_settings"\0"Item17.Settings=TRACK_RECENT"\0"Item18.Command=admin"\0"Item18.Settings=TRACK_RECENT|ITEM_DISABLED"\0"Item19.Command=devices"\0"Item19.Settings=ITEM_DISABLED"\0"Item20.Command=defaults"\0"Item20.Settings=ITEM_DISABLED"\0"Item21.Command=help"\0"Item21.Settings=ITEM_DISABLED"\0"Item22.Command=run"\0"Item23.Command=apps"\0"Item23.Settings=ITEM_DISABLED"\0"Item24.Command=windows_security"\0"Item24.Settings=ITEM_DISABLED"\0" /f > NUL 2>&1
-
-:: Creates a shortcut in the Open-Shell start menu
-SETLOCAL ENABLEDELAYEDEXPANSION
-SET LinkName=Firefox
-SET Esc_LinkDest=%%HOMEDRIVE%%\Users\%username%\AppData\Roaming\OpenShell\Pinned\!LinkName!.lnk
-SET Esc_LinkTarget=%%HOMEDRIVE%%\Program Files\Mozilla Firefox\Firefox.exe
-SET cSctVBS=CreateShortcut.vbs
-(
-  echo Set oWS = WScript.CreateObject^("WScript.Shell"^) 
-  echo sLinkFile = oWS.ExpandEnvironmentStrings^("!Esc_LinkDest!"^)
-  echo Set oLink = oWS.CreateShortcut^(sLinkFile^) 
-  echo oLink.TargetPath = oWS.ExpandEnvironmentStrings^("!Esc_LinkTarget!"^)
-  echo oLink.Save
-)1>!cSctVBS!
-cscript //nologo .\!cSctVBS!
-DEL !cSctVBS! /f /q
-
-SETLOCAL ENABLEDELAYEDEXPANSION
-SET LinkName=Mozilla Thunderbird
-SET Esc_LinkDest=%%HOMEDRIVE%%\Users\%username%\AppData\Roaming\OpenShell\Pinned\!LinkName!.lnk
-SET Esc_LinkTarget=%%HOMEDRIVE%%\Program Files\Mozilla Thunderbird\Thunderbird.exe
-SET cSctVBS=CreateShortcut.vbs
-(
-  echo Set oWS = WScript.CreateObject^("WScript.Shell"^) 
-  echo sLinkFile = oWS.ExpandEnvironmentStrings^("!Esc_LinkDest!"^)
-  echo Set oLink = oWS.CreateShortcut^(sLinkFile^) 
-  echo oLink.TargetPath = oWS.ExpandEnvironmentStrings^("!Esc_LinkTarget!"^)
-  echo oLink.Save
-)1>!cSctVBS!
-cscript //nologo .\!cSctVBS!
-DEL !cSctVBS! /f /q
-
-del silent_installers.7z /f /q > NUL 2>&1
-del OldNewExplorerCfg.exe /f /q > NUL 2>&1
-del OldCalculatorforWindows10Cfg.exe /f /q > NUL 2>&1
-del hardentoolsCfg.exe /f /q > NUL 2>&1
-
-:: Download and configure OldNewExplorer
-cls
-echo.
-echo  :: Installing Third Party Programs
-echo.
-echo Downloading...
-PowerShell -Command "wget -O silent_installers.7z https://wiki.ameliorated.info/lib/exe/fetch.php?media=silent_installers.7z" > NUL 2>&1
-cls
-echo.
-echo  :: Installing Third Party Programs
-echo.
-echo Extracting...
-7z x silent_installers.7z > NUL 2>&1
-cls
-echo.
-echo  :: Installing OldNewExplorer
-echo.
-echo Installing, please wait...
-start OldNewExplorerCfg.exe > NUL 2>&1
-timeout /t 15 /nobreak
-taskkill /f /im explorer.exe > NUL 2>&1
-taskkill /f /im OldNewExplorerCfg.exe > NUL 2>&1
-start OldNewExplorerCfg.exe > NUL 2>&1
-timeout /t 15 /nobreak
-taskkill /f /im OldNewExplorerCfg.exe > NUL 2>&1
-cls
-echo.
-echo  :: Installing Old Calculator for Windows 10
-echo.
-start OldCalculatorforWindows10Cfg.exe > NUL 2>&1
-timeout /t 10 /nobreak
-cls
-echo.
-echo  :: Installing hardentools
-echo.
-start hardentoolsCfg.exe > NUL 2>&1
-cls
-echo.
-echo  :: Installing hardentools
-echo.
-timeout /t 30 /nobreak
-:: hide hidden files in Windows Explorer again, hardentools turns this on
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSuperHidden /t REG_DWORD /d 0 /f > NUL 2>&1
-del silent_installers.7z /f /q > NUL 2>&1
-del hardentoolsCfg.exe /f /q > NUL 2>&1
-del OldCalculatorforWindows10Cfg.exe /f /q > NUL 2>&1
-del OldNewExplorerCfg.exe /f /q > NUL 2>&1
-goto reboot
-
-:wallpaper
-cls
-echo.
-echo  :: AME Wallpaper
-echo.
-echo     Install AME wallpapers? y/n 
-echo.
-echo  :: Type y to inject AME wallpapers
-echo  :: Type n to return to the main menu
-echo.
-set /P menu=
-	if %menu%==y GOTO installwallpaper
-	if %menu%==n GOTO menu
-else (
-	cls
-	echo.
-	echo  :: Incorrect Input Entered
-	echo.
-	echo     Please type y/n
-	echo     Press any key to retrn to the menu...
-	echo.
-	pause > NUL
-	goto wallpaper
-)
-
-:installwallpaper
-cls
-echo.
-echo  :: Checking For Internet Connection...
-echo.
-timeout /t 2 /nobreak > NUL
-ping -n 1 archlinux.org -w 20000 >nul
-if %errorlevel% == 0 (
-echo Internet Connection Found! Proceeding...
-) else (
-	echo  :: You are NOT connected to the Internet
-	echo.
-        echo     Please enable your Networking adapter and connect to try again.
-        echo     Press any key to retry...
-        pause > NUL
-        goto installwallpaper
-)
-cls
-echo.
-echo  :: AME Wallpaper
-echo.
-echo     Downloading AME wallpapers...
-echo.
-PowerShell -Command "wget -O master.zip https://git.ameliorated.info/malte/scripts/archive/master.zip" > NUL 2>&1
-cls
-echo.
-echo  :: AME Wallpaper
-echo.
-echo     Injecting AME wallpapers...
-echo.
-7z e master.zip -aoa scripts\Wallpapers -y > NUL 2>&1
-7z e ame_wallpaper_1440_bitmap.zip -y > NUL 2>&1
-takeown /f C:\Windows\Web\Screen\*.jpg > NUL 2>&1
-icacls C:\Windows\Web\Screen\*.jpg /reset > NUL 2>&1
-takeown /f C:\Windows\Web\Screen\*.png > NUL 2>&1
-icacls C:\Windows\Web\Screen\*.png /reset > NUL 2>&1
-takeown /f C:\Windows\Web\Wallpaper\Windows\*.jpg > NUL 2>&1
-icacls C:\Windows\Web\Wallpaper\Windows\*.jpg /reset > NUL 2>&1
-takeown /f C:\Windows\Web\4K\Wallpaper\Windows\*.jpg > NUL 2>&1
-icacls C:\Windows\Web\4K\Wallpaper\Windows\*.jpg /reset > NUL 2>&1
-copy img100.jpg C:\Windows\Web\Screen\ /Y > NUL 2>&1
-copy img103.png C:\Windows\Web\Screen\ /Y > NUL 2>&1
-copy img0.jpg C:\Windows\Web\Wallpaper\Windows\ /Y > NUL 2>&1
-copy img0_*.jpg C:\Windows\Web\4K\Wallpaper\Windows\ /Y > NUL 2>&1
-copy *.bmp C:\Windows\Web\Wallpaper\Windows\ /Y > NUL 2>&1
-reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d C:\Windows\Web\Wallpaper\Windows\ame_wallpaper_1440.bmp /f > NUL 2>&1
-start RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
-
-:: Delete Cache
-takeown /f C:\ProgramData\Microsoft\Windows\SystemData > NUL 2>&1
-icacls C:\ProgramData\Microsoft\Windows\SystemData /reset > NUL 2>&1
-takeown /f C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18 > NUL 2>&1
-icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18 /reset > NUL 2>&1
-takeown /f C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly > NUL 2>&1
-icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly /reset > NUL 2>&1
-takeown /f C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z > NUL 2>&1
-icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z /reset > NUL 2>&1
-takeown /f C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z\*.jpg > NUL 2>&1
-icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z\*.jpg /reset > NUL 2>&1
-del C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z\*.jpg /f /q > NUL 2>&1
-del master.zip /f /q > NUL 2>&1
-rmdir .\Wallpapers /f /q > NUL 2>&1
-del ame_wallpaper_1440_bitmap.zip /f /q > NUL 2>&1
-del .\*.jpg /f /q > NUL 2>&1
-del .\*.png /f /q > NUL 2>&1
-del .\*.bmp /f /q > NUL 2>&1
-goto reboot
+:::: Creates a shortcut in the Open-Shell start menu
+::SETLOCAL ENABLEDELAYEDEXPANSION
+::SET LinkName=Firefox
+::SET Esc_LinkDest=%%HOMEDRIVE%%\Users\%username%\AppData\Roaming\OpenShell\Pinned\!LinkName!.lnk
+::SET Esc_LinkTarget=%%HOMEDRIVE%%\Program Files\Mozilla Firefox\Firefox.exe
+::SET cSctVBS=CreateShortcut.vbs
+::(
+::  echo Set oWS = WScript.CreateObject^("WScript.Shell"^) 
+::  echo sLinkFile = oWS.ExpandEnvironmentStrings^("!Esc_LinkDest!"^)
+::  echo Set oLink = oWS.CreateShortcut^(sLinkFile^) 
+::  echo oLink.TargetPath = oWS.ExpandEnvironmentStrings^("!Esc_LinkTarget!"^)
+::  echo oLink.Save
+::)1>!cSctVBS!
+::cscript //nologo .\!cSctVBS!
+::DEL !cSctVBS! /f /q
+::
+::SETLOCAL ENABLEDELAYEDEXPANSION
+::SET LinkName=Mozilla Thunderbird
+::SET Esc_LinkDest=%%HOMEDRIVE%%\Users\%username%\AppData\Roaming\OpenShell\Pinned\!LinkName!.lnk
+::SET Esc_LinkTarget=%%HOMEDRIVE%%\Program Files\Mozilla Thunderbird\Thunderbird.exe
+::SET cSctVBS=CreateShortcut.vbs
+::(
+::  echo Set oWS = WScript.CreateObject^("WScript.Shell"^) 
+::  echo sLinkFile = oWS.ExpandEnvironmentStrings^("!Esc_LinkDest!"^)
+::  echo Set oLink = oWS.CreateShortcut^(sLinkFile^) 
+::  echo oLink.TargetPath = oWS.ExpandEnvironmentStrings^("!Esc_LinkTarget!"^)
+::  echo oLink.Save
+::)1>!cSctVBS!
+::cscript //nologo .\!cSctVBS!
+::DEL !cSctVBS! /f /q
+::
+::del silent_installers.7z /f /q > NUL 2>&1
+::del OldNewExplorerCfg.exe /f /q > NUL 2>&1
+::del OldCalculatorforWindows10Cfg.exe /f /q > NUL 2>&1
+::del hardentoolsCfg.exe /f /q > NUL 2>&1
+::
+:::: Download and configure OldNewExplorer
+::cls
+::echo.
+::echo  :: Installing Third Party Programs
+::echo.
+::echo Downloading...
+::PowerShell -Command "wget -O silent_installers.7z https://wiki.ameliorated.info/lib/exe/fetch.php?media=silent_installers.7z" > NUL 2>&1
+::cls
+::echo.
+::echo  :: Installing Third Party Programs
+::echo.
+::echo Extracting...
+::7z x silent_installers.7z > NUL 2>&1
+::cls
+::echo.
+::echo  :: Installing OldNewExplorer
+::echo.
+::echo Installing, please wait...
+::start OldNewExplorerCfg.exe > NUL 2>&1
+::timeout /t 15 /nobreak
+::taskkill /f /im explorer.exe > NUL 2>&1
+::taskkill /f /im OldNewExplorerCfg.exe > NUL 2>&1
+::start OldNewExplorerCfg.exe > NUL 2>&1
+::timeout /t 15 /nobreak
+::taskkill /f /im OldNewExplorerCfg.exe > NUL 2>&1
+::cls
+::echo.
+::echo  :: Installing Old Calculator for Windows 10
+::echo.
+::start OldCalculatorforWindows10Cfg.exe > NUL 2>&1
+::timeout /t 10 /nobreak
+::cls
+::echo.
+::echo  :: Installing hardentools
+::echo.
+::start hardentoolsCfg.exe > NUL 2>&1
+::cls
+::echo.
+::echo  :: Installing hardentools
+::echo.
+::timeout /t 30 /nobreak
+:::: hide hidden files in Windows Explorer again, hardentools turns this on
+::reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSuperHidden /t REG_DWORD /d 0 /f > NUL 2>&1
+::del silent_installers.7z /f /q > NUL 2>&1
+::del hardentoolsCfg.exe /f /q > NUL 2>&1
+::del OldCalculatorforWindows10Cfg.exe /f /q > NUL 2>&1
+::del OldNewExplorerCfg.exe /f /q > NUL 2>&1
+::goto reboot
+::
+:::wallpaper
+::cls
+::echo.
+::echo  :: AME Wallpaper
+::echo.
+::echo     Install AME wallpapers? y/n 
+::echo.
+::echo  :: Type y to inject AME wallpapers
+::echo  :: Type n to return to the main menu
+::echo.
+::set /P menu=
+::	if %menu%==y GOTO installwallpaper
+::	if %menu%==n GOTO menu
+::else (
+::	cls
+::	echo.
+::	echo  :: Incorrect Input Entered
+::	echo.
+::	echo     Please type y/n
+::	echo     Press any key to retrn to the menu...
+::	echo.
+::	pause > NUL
+::	goto wallpaper
+::)
+::
+:::installwallpaper
+::cls
+::echo.
+::echo  :: Checking For Internet Connection...
+::echo.
+::timeout /t 2 /nobreak > NUL
+::ping -n 1 archlinux.org -w 20000 >nul
+::if %errorlevel% == 0 (
+::echo Internet Connection Found! Proceeding...
+::) else (
+::	echo  :: You are NOT connected to the Internet
+::	echo.
+::        echo     Please enable your Networking adapter and connect to try again.
+::        echo     Press any key to retry...
+::        pause > NUL
+::        goto installwallpaper
+::)
+::cls
+::echo.
+::echo  :: AME Wallpaper
+::echo.
+::echo     Downloading AME wallpapers...
+::echo.
+::PowerShell -Command "wget -O master.zip https://git.ameliorated.info/malte/scripts/archive/master.zip" > NUL 2>&1
+::cls
+::echo.
+::echo  :: AME Wallpaper
+::echo.
+::echo     Injecting AME wallpapers...
+::echo.
+::7z e master.zip -aoa scripts\Wallpapers -y > NUL 2>&1
+::7z e ame_wallpaper_1440_bitmap.zip -y > NUL 2>&1
+::takeown /f C:\Windows\Web\Screen\*.jpg > NUL 2>&1
+::icacls C:\Windows\Web\Screen\*.jpg /reset > NUL 2>&1
+::takeown /f C:\Windows\Web\Screen\*.png > NUL 2>&1
+::icacls C:\Windows\Web\Screen\*.png /reset > NUL 2>&1
+::takeown /f C:\Windows\Web\Wallpaper\Windows\*.jpg > NUL 2>&1
+::icacls C:\Windows\Web\Wallpaper\Windows\*.jpg /reset > NUL 2>&1
+::takeown /f C:\Windows\Web\4K\Wallpaper\Windows\*.jpg > NUL 2>&1
+::icacls C:\Windows\Web\4K\Wallpaper\Windows\*.jpg /reset > NUL 2>&1
+::copy img100.jpg C:\Windows\Web\Screen\ /Y > NUL 2>&1
+::copy img103.png C:\Windows\Web\Screen\ /Y > NUL 2>&1
+::copy img0.jpg C:\Windows\Web\Wallpaper\Windows\ /Y > NUL 2>&1
+::copy img0_*.jpg C:\Windows\Web\4K\Wallpaper\Windows\ /Y > NUL 2>&1
+::copy *.bmp C:\Windows\Web\Wallpaper\Windows\ /Y > NUL 2>&1
+::reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d C:\Windows\Web\Wallpaper\Windows\ame_wallpaper_1440.bmp /f > NUL 2>&1
+::start RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
+::
+:::: Delete Cache
+::takeown /f C:\ProgramData\Microsoft\Windows\SystemData > NUL 2>&1
+::icacls C:\ProgramData\Microsoft\Windows\SystemData /reset > NUL 2>&1
+::takeown /f C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18 > NUL 2>&1
+::icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18 /reset > NUL 2>&1
+::takeown /f C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly > NUL 2>&1
+::icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly /reset > NUL 2>&1
+::takeown /f C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z > NUL 2>&1
+::icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z /reset > NUL 2>&1
+::takeown /f C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z\*.jpg > NUL 2>&1
+::icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z\*.jpg /reset > NUL 2>&1
+::del C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z\*.jpg /f /q > NUL 2>&1
+::del master.zip /f /q > NUL 2>&1
+::rmdir .\Wallpapers /f /q > NUL 2>&1
+::del ame_wallpaper_1440_bitmap.zip /f /q > NUL 2>&1
+::del .\*.jpg /f /q > NUL 2>&1
+::del .\*.png /f /q > NUL 2>&1
+::del .\*.bmp /f /q > NUL 2>&1
+::goto reboot
 
 :: Open User preferences to configure administrator/user permissions
 :user
