@@ -66,6 +66,8 @@ else
    echo "$FILE' not found, continuing"
 fi
 
+
+
 # start AME process
 title_bar
 echo "Starting AME process, searching for files..."
@@ -74,7 +76,7 @@ touch fzf_list.txt
 for i in "${Term[@]}"
 do
     echo "Looking for $i"
-    $HOME/.fzf/bin/fzf -e -f $i >> fzf_list.txt
+    /usr/bin/fzf -e -f $i >> fzf_list.txt
 done
 
 # check if fzf found anything
